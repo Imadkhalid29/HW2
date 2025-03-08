@@ -4,12 +4,12 @@
     Date created: February 8, 2025
     Date last edited: February 8, 2025
     Version: 1.0
-    Description: Homework 1 HTML Patient Form
+    Description: Homework 2 HTML Patient Form
 
 -->
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="style.css"> <!-- links to css file-->
+        <link rel="stylesheet" href="HW2.css"> <!-- links to css file-->
         
         <!--displays text in the tab-->
         <title>New Patient Intake Form | Richmond Health Care</title>
@@ -34,7 +34,7 @@
         </header>
 <hr>
 <!--End of Form-->
-<form action="thankyou.html">
+<form action="thankyou.html" id="signup">
     <center>
         <div class="format">
             <table>
@@ -50,11 +50,17 @@
                         type="text" 
                         name="fname" 
                         id="fname" 
+                        minlength="1"
                         maxlength="30" 
                         required 
-                        title="Enter your first name"
+                        title="Letter, apostrophes, and dashes only"
+                        pattern="[a-zA-Z']{1,30}"
+                        onblur="validateFname()"
                         placeholder="Imad"
                         />
+
+                    </br>
+                    <span class="error" id="fname-error"></span>
                     </td>
                 </tr>
 
@@ -65,25 +71,34 @@
                         type="text" 
                         name="mname" 
                         id="mname" 
-                        maxlength="30" 
-                        title="Enter your middle name"
-                        placeholder="Imad"
+                        maxlength="1" 
+                        title="Letters only"
+                        pattern="[a-zA-Z']{0,1}"
+                        onblur="validateMname()"
+                        placeholder="A"
                         />
+                    </br>
+                    <span class="error" id="mname-error"></span>
                     </td>
                 </tr>
 
                 <tr>
-                    <td><label for="lname">last Name:</label></td>
+                    <td><label for="lname">Last Name:</label></td>
                     <td>
                         <input 
                         type="text" 
                         name="lname" 
                         id="lname" 
+                        minlength="1"
                         maxlength="30" 
                         required
-                        title="Enter your last name"
+                        title="Letter, apostrophes, and dashes only"
+                        pattern="[a-zA-Z']{1,30}"
+                        onblur="validateLname()"
                         placeholder="Khalid"
                         />
+                    </br>
+                    <span class="error" id="lname-error"></span>
                     </td>
                 </tr>
 
@@ -123,7 +138,11 @@
                         type="date" 
                         id="dob" 
                         name="dob"
+                        onblur="validateDob()"
+                        required
                         />
+                    </br>
+                    <span class="error" id="dob-error"></span>
                     </td>
                 </tr>
 
@@ -137,9 +156,12 @@
                         name="ssn"
                         id="ssn"
                         required
-                        title="Enter your social security number"
+                        title="Numbers only"
                         placeholder="123-45-6789"
+                        onblur="validateSsn()"
                         />
+                    </br>
+                    <span class="error" id="ssn-error"></span>
                     </td>
                 </tr>
 
@@ -157,12 +179,16 @@
                         <input 
                         type="text" 
                         name="address1" 
-                        id="address1" 
+                        id="address1"
+                        minlength="2" 
                         maxlength="30" 
                         required 
-                        title="Enter your address"
+                        title="Please enter your address"
                         placeholder="1234 Address"
+                        onblur="validateAddress1()"
                         />
+                    </br>
+                    <span class="error" id="address1-error"></span>
                     </td>
                 </tr>
 
@@ -265,9 +291,13 @@
                             minlength="5"
                             maxlength="10"
                             required
-                            title="Enter zip code"
+                            title="Numbers and a dash only"
                             placeholder="12345"
+                            pattern="^\d{5}(-\d{4})?$"
+                            onblur="validateZcode()"
                             />
+                        </br>
+                        <span class="error" id="zcode-error"></span>
                         </td>
                     </tr>
 
@@ -281,7 +311,11 @@
                             required
                             title="Enter your email address"
                             placeholder="name@domain.com"
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,20}$"
+                            onblur="validateEmail()"
                             />
+                        </br>
+                        <span class="error" id="email-error"></span>
                         </td>
                     </tr>
 
@@ -292,11 +326,15 @@
                             type="text"
                             name="phone"
                             id="phone"
-                            maxlength="10"
+                            maxlength="12"
                             required
                             title="Enter your phone number"
                             placeholder="(123)-456-7890"
+                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                            onblur="validatePhone()"
                             />
+                        </br>
+                        <span class="error" id="phone-error"></span>
                         </td>
                     </tr>
 
@@ -312,23 +350,24 @@
                     <tr>
                         <td><label for="mhistory">Have you ever had<br/>(Check all that apply):</label></td>
                         <td>
-                            <input type="checkbox" id="option1" value="Diabetes"> Diabetes
-                            <label for="Diabetes">Diabetes</label><br>
+                            <input type="checkbox" id="option1" name="mhistory" value="Diabetes">
+                            <label for="option1">Diabetes</label><br>
 
-                            <input type="checkbox" id="option2" value="Hypertension"> Hypertension
-                            <label for="Hypertension">Hypertension</label><br>
+                            <input type="checkbox" id="option2" name="mhistory" value="Hypertension">
+                            <label for="option2">Hypertension</label><br>
 
-                            <input type="checkbox" id="option3" value="Asthma"> Asthma
-                            <label for="Asthma">Asthma</label><br>
+                            <input type="checkbox" id="option3" name="mhistory" value="Asthma">
+                            <label for="option3">Asthma</label><br>
 
-                            <input type="checkbox" id="option4" value="COVID-19"> COVID-19
-                            <label for="COVID-19">COVID-19</label><br>
+                            <input type="checkbox" id="option4" name="mhistory" value="COVID-19">
+                            <label for="option4">COVID-19</label><br>
 
-                            <input type="checkbox" id="option5" value="Thyroid Disease"> Thyroid Disease
-                            <label for="Thyroid Disease">Thyroid Disease</label><br>
+                            <input type="checkbox" id="option5" name="mhistory" value="Thyroid Disease">
+                            <label for="option5">Thyroid Disease</label><br>
 
-                            <input type="checkbox" id="option6" value="Autoimmune Disease"> Autoimmune Disease
-                            <label for="Autoimmune Disease">Autoimmune Disease</label><br>
+                            <input type="checkbox" id="option6" name="mhistory" value="Autoimmune Disease">
+                            <label for="option6">Autoimmune Disease</label><br>
+
                         </td>
                     </tr>
 
@@ -424,9 +463,11 @@
                             id="uid"
                             maxlength="20"
                             required
-                            title="Please enter a user ID:"
+                            title="Please enter a user ID"
                             placeholder="Your user ID"
                             />
+                        </br>
+                        <span class="error" id="uid-error"></span>
                         </td>
                     </tr>
 
@@ -442,7 +483,12 @@
                             required
                             title="Enter a password"
                             placeholder="Your password"
+                            onblur="validatePword()"
+                            oninput="validatePword()"
+                            onfocus="validatePword()"
                             />
+                        </br>
+                        <span class="error" id="pword-error"></span>
                         </td>
                     </tr>
 
@@ -458,7 +504,12 @@
                             required
                             title="Re-enter password"
                             placeholder="Your password"
+                            onblur="confirmPword()"
+                            oninput="confirmPword()"
+                            onfocus="confirmPword()"
                             />
+                        </br>
+                        <span class="error" id="pword2-error"></span>
                         </td>
                     </tr>
                     
@@ -468,13 +519,29 @@
                             <center>
                                 <input type="submit" name="submit">
                                 <input type="reset" name="reset">
+                                <input type="button" name="review" id="review" value="Review" onclick="reviewInput()">
                             </center>
                         </td>
                     </tr>
+            </table>
+        </div>
+    <div class="pword-message">
+        <span id="msg1"></span> <br/>
+        <span id="msg2"></span> <br/>
+        <span id="msg3"></span> <br/>
+        <span id="msg4"></span> <br/>
+        <span id="msg5"></span> <br/>
+        <span id="msg6"></span> <br/>
+        <span id="msg7"></span> <br/>
+        <span id="pword2-error"></span> <br>
+    </div>
+
+    <div id="showInput" class="review-box"></div>
+
 
                     <footer>
                         <p>&#169; 2025 Richmond Health Care <a href="contact.html">Contact Us!</a></p>
                     </footer>
 
-                    <script src="hw1.js"></script>
+                    <script src="HW2.js"></script>
 </html>

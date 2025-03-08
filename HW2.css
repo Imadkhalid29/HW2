@@ -55,11 +55,22 @@ th {
 }
 
 footer {
-    position: flex;
+    position: fixed;
     bottom: 0;
+    right: 0;
     width: 100%;
-    background-color: rgb(185, 55, 100, 0.699);
-    height: 2.0rem;
+    background-color: rgba(185, 55, 100, 0.699);
+    padding: 10px 20px;
+    text-align: right;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+footer p {
+    margin: 0;
+    font-family: "optima", sans-serif;
+    font-weight: normal;
+    color: black;
 }
 
 #footer {
@@ -98,4 +109,76 @@ p {
     text-align: right;
     font-family: "optima", sans-serif;
     font-weight: normal;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.pword-message {
+    text-align: right;
+    font-family: "optima", sans-serif;
+    font-weight: normal;
+    position: relative;
+    left: 100px;
+    background: transparent;
+    padding: 10px;
+    border-spacing: 2px;
+    border-radius: 20px;
+    color: red;
+}
+
+.review-box {
+    width: 50%;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: rgba(185, 55, 100, 0.699);
+    border-radius: 10px;
+    text-align: left;
+    font-family: "optima", sans-serif;
+    font-size: 14px;
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.review-table th {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.review-table td {
+    padding: 5px;
+}
+
+.review-table td:first-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+#review {
+    margin-top: 2px;
+}
+
+table.output,
+tr.output,
+td.output {
+    width: 500px;
+    background-color: rgb(185, 55, 100);
+    padding: 10px;
+    border-spacing: 2px;
+    border-radius: 20px;
+    color: black;
+}
+
+td.output {
+    width: 500px;
+    background-color: rgb(185, 55, 100);
+    padding: 10px;
+    border-spacing: 2px;
 }
